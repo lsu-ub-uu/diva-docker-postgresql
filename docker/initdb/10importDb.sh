@@ -1,11 +1,12 @@
 #!/bin/bash
 dbFilesFolder="dbfiles"
 dataDividers="cora jsClient diva divaTestSystem divaProdSystem divaClient"
+PGPASSWORD=$POSTGRES_PASSWORD
 
 importForDataDivider () {
 	for SQL in "$1"/* ;	do
 		echo "Run SQL file: $SQL"
-		psql -v ON_ERROR_STOP=1 -U $POSTGRES_USER $POSTGRES_PASSWORD < $SQL > $SQL.log
+		psql -v ON_ERROR_STOP=1 -U $POSTGRES_USER $POSTGRES_DB < $SQL > $SQL.log
 	done
 }
 
