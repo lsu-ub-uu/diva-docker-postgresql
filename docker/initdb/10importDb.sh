@@ -1,6 +1,6 @@
 #!/bin/bash
 dbFilesFolder="dbfiles"
-dataDividers="cora jsClient diva divaPreview divaPre divaProduction divaClient"
+dataDividers=$DATA_DIVIDERS
 PGPASSWORD=$POSTGRES_PASSWORD
 
 importForDataDivider () {
