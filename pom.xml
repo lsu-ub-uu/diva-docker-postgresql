@@ -14,7 +14,7 @@
 	<parent>
 		<groupId>se.uu.ub.cora</groupId>
 		<artifactId>cora-parent</artifactId>
-		<version>2.6.0</version>
+		<version>2.7.0</version>
 	</parent>
 
 	<artifactId>diva-docker-postgresql</artifactId>
@@ -28,7 +28,7 @@
 		<cora-metadata.version>1.4-SNAPSHOT</cora-metadata.version>
 		<diva-metadata.version>1.1-SNAPSHOT</diva-metadata.version>
 
-		<exec-maven-plugin.version>3.4.1</exec-maven-plugin.version>
+		<exec-maven-plugin.version>3.5.0</exec-maven-plugin.version>
 		<outputDirectory>${project.build.directory}/docker2</outputDirectory>
 	</properties>
 
