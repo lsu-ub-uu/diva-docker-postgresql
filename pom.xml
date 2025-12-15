@@ -25,7 +25,7 @@
 	<properties>
 		<cora-docker-postgresql.version>11.2.0</cora-docker-postgresql.version>
 		
-		<cora-metadata.version>1.54.0</cora-metadata.version>
+		<cora-metadata.version>1.55.0</cora-metadata.version>
 		<diva-metadata.version>1.98.0</diva-metadata.version>
 
 		<!-- Override property so docker-build profile activates in this module -->
