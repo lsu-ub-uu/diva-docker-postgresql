@@ -23,7 +23,7 @@
 	<name>DiVa PostgreSQL Docker</name>
 
 	<properties>
-		<cora-docker-postgresql.version>11.2.0</cora-docker-postgresql.version>
+		<cora-docker-postgresql.version>11.3.0</cora-docker-postgresql.version>
 		
 		<cora-metadata.version>1.59.0</cora-metadata.version>
 		<diva-metadata.version>1.116.0</diva-metadata.version>
