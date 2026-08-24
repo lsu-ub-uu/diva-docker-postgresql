@@ -1,14 +1,10 @@
+DROP MATERIALIZED VIEW IF EXISTS urnnbn_records;
 
---THIS IS ONLY FOR DIVA AND ALVIN THEREFORE IT SHOULD NOT BE INCLUDED IN THIS PROJECT...MUST BE MOVED
-
-DROP MATERIALIZED VIEW IF EXISTS urnnbn_recent_records;
-
-CREATE MATERIALIZED VIEW urnnbn_recent_records as
+CREATE MATERIALIZED VIEW urnnbn_records as
 	SELECT
 		substring(record_urnnbn->>'value' from 'urn:nbn:se:([^:-]+)') as serie,
 		record_urnnbn->>'value' AS urnnbn,
 		record_id->>'value' AS id,
---		record_visibility->>'value' AS visibility, -- Maybe we do not need this line, we do not need the information.
 		(record_tsVisibility->>'value')::timestamp AS ts_visibility
 	FROM
 		record,
@@ -22,11 +18,10 @@ CREATE MATERIALIZED VIEW urnnbn_recent_records as
 		AND record_recordInfo->>'name' = 'recordInfo'
 		AND record_id->>'name' = 'id'
 		AND record_urnnbn->>'name' = 'urn'
---		AND record_urnnbn->>'value' LIKE 'urn:nbn:se:diva%'
 		AND record_visibility->>'name' = 'visibility' -- Maybe we do not need this line
 		AND record_visibility->>'value' = 'published'
 		AND record_tsVisibility->>'name' = 'tsVisibility'
 	ORDER BY ts_visibility desc;
 
 --Need it in order to use concurrently while refreshing the view
-CREATE UNIQUE INDEX idx_urnnbn_recent_records_id ON urnnbn_recent_records (id);
+CREATE UNIQUE INDEX idx_urnnbn_records_id ON urnnbn_records (id);

@@ -7,3 +7,4 @@ COPY dbfiles/ dbfiles/
 COPY extra/ sql/extra
 
 RUN chown -R postgres: dbfiles
+RUN chown -R postgres: sql/extra
