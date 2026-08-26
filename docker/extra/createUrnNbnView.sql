@@ -1,6 +1,6 @@
-DROP MATERIALIZED VIEW IF EXISTS urnnbn_records;
+DROP VIEW IF EXISTS urnnbn_records;
 
-CREATE MATERIALIZED VIEW urnnbn_records as
+CREATE VIEW urnnbn_records as
 	SELECT
 		substring(record_urnnbn->>'value' from 'urn:nbn:se:([^:-]+)') as serie,
 		record_urnnbn->>'value' AS urnnbn,
@@ -22,6 +22,3 @@ CREATE MATERIALIZED VIEW urnnbn_records as
 		AND record_visibility->>'value' = 'published'
 		AND record_tsVisibility->>'name' = 'tsVisibility'
 	ORDER BY ts_visibility desc;
-
---Need it in order to use concurrently while refreshing the view
-CREATE UNIQUE INDEX idx_urnnbn_records_id ON urnnbn_records (id);
