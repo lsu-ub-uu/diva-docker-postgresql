@@ -1,6 +1,6 @@
-DROP VIEW IF EXISTS urnnbn_daily_records;
+DROP VIEW IF EXISTS urnnbn_24h_records;
 
-CREATE VIEW urnnbn_daily_records AS
+CREATE VIEW urnnbn_24h_records AS
 	SELECT
 		substring(record_urnnbn->>'value' from 'urn:nbn:se:([^:-]+)') as serie,
 		record_urnnbn->>'value' AS urnnbn,
