@@ -1,6 +1,6 @@
-DROP VIEW IF EXISTS urnnbn_records;
+DROP VIEW IF EXISTS urnnbn_daily_records;
 
-CREATE VIEW urnnbn_records as
+CREATE VIEW urnnbn_daily_records AS
 	SELECT
 		substring(record_urnnbn->>'value' from 'urn:nbn:se:([^:-]+)') as serie,
 		record_urnnbn->>'value' AS urnnbn,
@@ -18,7 +18,8 @@ CREATE VIEW urnnbn_records as
 		AND record_recordInfo->>'name' = 'recordInfo'
 		AND record_id->>'name' = 'id'
 		AND record_urnnbn->>'name' = 'urn'
-		AND record_visibility->>'name' = 'visibility' -- Maybe we do not need this line
+		AND record_visibility->>'name' = 'visibility'
 		AND record_visibility->>'value' = 'published'
 		AND record_tsVisibility->>'name' = 'tsVisibility'
-	ORDER BY ts_visibility desc;
+		AND (record_tsVisibility->>'value')::timestamp >= NOW() - INTERVAL '24 hours'
+	ORDER BY ts_visibility DESC;
